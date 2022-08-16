@@ -6,3 +6,10 @@ temp
 # Because of CMake and VS2017
 Win32
 x64
+
+# balus's config
+cmake-build-debug
+.idea/
+.vscode/
+.ccls-cache/
+bb/

@@ -136,9 +136,11 @@ endif()
 
 
 if(BOOST_URL_BUILD_TESTS)
-    add_subdirectory(test)
+    #add_subdirectory(test)
 endif()
 
 if(BOOST_URL_BUILD_EXAMPLES)
     add_subdirectory(example)
 endif()
+
+#add_subdirectory(demos)
