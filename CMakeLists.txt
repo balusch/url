@@ -28,6 +28,7 @@ if(BOOST_URL_IS_ROOT)
 endif()
 
 if(NOT BOOST_SUPERPROJECT_VERSION)
+    option(BOOST_URL_STANDALONE "Build boost::url as a standalone library" OFF)
     option(BOOST_URL_INSTALL "Install boost::url files" ${BOOST_URL_IS_ROOT})
     option(BOOST_URL_BUILD_TESTS "Build boost::url tests" ${BUILD_TESTING})
     option(BOOST_URL_BUILD_EXAMPLES "Build boost::url examples" ${BOOST_URL_IS_ROOT})
@@ -73,23 +74,28 @@ function(boost_url_setup_properties target)
         )
     endif()
 
-    if (BOOST_URL_FIND_PACKAGE_BOOST)
-        target_link_libraries(${target}
-                PUBLIC
-                Boost::headers
-                )
+    if(BOOST_URL_STANDALONE)
+        target_compile_definitions(${target} PUBLIC BOOST_URL_STANDALONE)
+        target_compile_features(${target} PUBLIC cxx_std_17)
     else()
-        target_link_libraries(${target}
-            PUBLIC
-                Boost::align
-                Boost::assert
-                Boost::config
-                Boost::mp11
-                Boost::optional
-                Boost::system
-                Boost::throw_exception
-                Boost::type_traits
-        )
+        if (BOOST_URL_FIND_PACKAGE_BOOST)
+            target_link_libraries(${target}
+                    PUBLIC
+                    Boost::headers
+                    )
+        else()
+            target_link_libraries(${target}
+                PUBLIC
+                    Boost::align
+                    Boost::assert
+                    Boost::config
+                    Boost::mp11
+                    Boost::optional
+                    Boost::system
+                    Boost::throw_exception
+                    Boost::type_traits
+            )
+        endif()
     endif()
 endfunction()
 
@@ -136,9 +142,9 @@ endif()
 
 
 if(BOOST_URL_BUILD_TESTS)
-    add_subdirectory(test)
+    # add_subdirectory(test)
 endif()
 
 if(BOOST_URL_BUILD_EXAMPLES)
-    add_subdirectory(example)
+    # add_subdirectory(example)
 endif()
