@@ -13,7 +13,6 @@
 #include <boost/url/detail/config.hpp>
 #include <boost/url/url_base.hpp>
 #include <boost/align/align_up.hpp>
-#include <boost/static_assert.hpp>
 #include <cstddef>
 
 namespace boost {

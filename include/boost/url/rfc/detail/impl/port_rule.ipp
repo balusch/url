@@ -13,7 +13,6 @@
 #include <boost/url/rfc/detail/port_rule.hpp>
 #include <boost/url/grammar/parse.hpp>
 #include <boost/url/grammar/token_rule.hpp>
-#include <boost/static_assert.hpp>
 #include <type_traits>
 
 namespace boost {

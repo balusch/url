@@ -11,7 +11,6 @@
 #define BOOST_URL_DETAIL_IMPL_REMOVE_DOT_SEGMENTS_IPP
 
 #include <boost/url/detail/remove_dot_segments.hpp>
-#include <boost/assert.hpp>
 #include <cstring>
 
 namespace boost {

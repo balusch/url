@@ -15,7 +15,6 @@
 #include <boost/url/url.hpp>
 #include <boost/url/rfc/query_rule.hpp>
 #include <boost/url/detail/normalize.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

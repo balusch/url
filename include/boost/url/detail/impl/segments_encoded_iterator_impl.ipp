@@ -13,7 +13,6 @@
 
 #include <boost/url/detail/segments_encoded_iterator_impl.hpp>
 #include <boost/url/rfc/detail/path_rules.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

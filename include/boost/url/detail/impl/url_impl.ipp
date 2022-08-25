@@ -12,7 +12,6 @@
 
 #include <boost/url/detail/url_impl.hpp>
 #include <boost/url/authority_view.hpp>
-#include <boost/assert.hpp>
 #include <cstring>
 
 namespace boost {

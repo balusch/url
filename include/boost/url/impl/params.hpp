@@ -13,7 +13,6 @@
 
 #include <boost/url/detail/except.hpp>
 #include <boost/url/detail/params_iterator_impl.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

@@ -12,7 +12,6 @@
 #define BOOST_URL_DETAIL_IMPL_PARAMS_ENCODED_ITERATOR_IMPL_IPP
 
 #include <boost/url/detail/params_encoded_iterator_impl.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

@@ -13,7 +13,6 @@
 
 #include <boost/url/detail/config.hpp>
 #include <boost/url/url_base.hpp>
-#include <boost/assert.hpp>
 #include <utility>
 
 namespace boost {

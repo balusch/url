@@ -14,8 +14,6 @@
 #include <boost/url/detail/empty_value.hpp>
 #include <boost/url/grammar/error.hpp>
 #include <boost/url/grammar/recycled.hpp>
-#include <boost/assert.hpp>
-#include <boost/static_assert.hpp>
 #include <exception>
 #include <iterator>
 #include <new>

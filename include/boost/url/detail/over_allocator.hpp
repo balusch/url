@@ -12,7 +12,6 @@
 
 #include <boost/config.hpp>
 #include <boost/url/detail/empty_value.hpp>
-#include <boost/assert.hpp>
 #include <boost/type_traits/is_final.hpp>
 #include <boost/type_traits/type_with_alignment.hpp>
 #ifdef BOOST_NO_CXX11_ALLOCATOR

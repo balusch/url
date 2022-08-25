@@ -13,7 +13,6 @@
 #include <boost/url/rfc/detail/h16_rule.hpp>
 #include <boost/url/grammar/charset.hpp>
 #include <boost/url/grammar/error.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

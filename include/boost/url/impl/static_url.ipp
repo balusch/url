@@ -13,7 +13,6 @@
 #include <boost/url/static_url.hpp>
 #include <boost/url/url_view.hpp>
 #include <boost/url/detail/except.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

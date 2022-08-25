@@ -24,7 +24,6 @@
 #include <boost/url/segments_view.hpp>
 #include <boost/url/scheme.hpp>
 #include <boost/url/detail/url_impl.hpp>
-#include <boost/assert.hpp>
 #include <cstddef>
 #include <cstdint>
 #include <iosfwd>

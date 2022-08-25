@@ -17,7 +17,6 @@
 #include <boost/url/string_view.hpp>
 #include <boost/url/grammar/charset.hpp>
 #include <boost/url/grammar/error.hpp>
-#include <boost/static_assert.hpp>
 
 namespace boost {
 namespace urls {

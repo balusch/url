@@ -13,7 +13,6 @@
 #include <boost/url/detail/config.hpp>
 #include <boost/url/optional.hpp>
 #include <boost/url/result.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

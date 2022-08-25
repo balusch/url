@@ -15,7 +15,6 @@
 #include <boost/url/result.hpp>
 #include <boost/url/grammar/charset.hpp>
 #include <boost/url/string_view.hpp>
-#include <boost/static_assert.hpp>
 #include <limits>
 #include <type_traits>
 

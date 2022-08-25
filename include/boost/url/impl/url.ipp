@@ -12,7 +12,6 @@
 #define BOOST_URL_IMPL_URL_IPP
 
 #include <boost/url/url.hpp>
-#include <boost/assert.hpp>
 
 namespace boost {
 namespace urls {

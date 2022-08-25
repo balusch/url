@@ -15,7 +15,6 @@
 #include <boost/url/rfc/detail/h16_rule.hpp>
 #include <boost/url/grammar/charset.hpp>
 #include <boost/url/grammar/parse.hpp>
-#include <boost/assert.hpp>
 #include <cstring>
 
 namespace boost {

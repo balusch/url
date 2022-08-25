@@ -15,7 +15,7 @@
 #include <boost/url/scheme.hpp>
 #include <boost/url/string_view.hpp>
 #include <boost/url/detail/parts_base.hpp>
-#include <boost/assert.hpp>
+#include <boost/url/detail/config.hpp>
 #include <cstdint>
 
 namespace boost {

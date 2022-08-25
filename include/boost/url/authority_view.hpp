@@ -18,7 +18,6 @@
 #include <boost/url/pct_encoded_view.hpp>
 #include <boost/url/detail/except.hpp>
 #include <boost/url/detail/url_impl.hpp>
-#include <boost/assert.hpp>
 #include <cstddef>
 #include <iosfwd>
 #include <utility>

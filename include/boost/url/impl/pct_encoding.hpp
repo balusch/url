@@ -15,8 +15,6 @@
 #include <boost/url/pct_encoded_view.hpp>
 #include <boost/url/grammar/hexdig_chars.hpp>
 #include <boost/url/grammar/type_traits.hpp>
-#include <boost/assert.hpp>
-#include <boost/static_assert.hpp>
 
 namespace boost {
 namespace urls {
