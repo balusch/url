@@ -311,7 +311,7 @@ set_encoded_user(
             ec,
             detail::user_chars,
             {});
-    if(ec.failed())
+    if(ec)
         detail::throw_invalid_argument();
     auto dest = set_user_impl(s.size());
     u_.decoded_[id_user] = n;
@@ -435,7 +435,7 @@ set_encoded_password(
     error_code ec;
     auto const n = validate_pct_encoding(
         s, ec, detail::password_chars, {});
-    if(ec.failed())
+    if(ec)
         detail::throw_invalid_argument();
     auto dest =
         set_password_impl(s.size());
@@ -1129,7 +1129,7 @@ edit_segments(
     std::size_t n = 0;
     std::size_t nseg = 0;
     bool more = it0.measure(n, ec);
-    if(ec.failed())
+    if(ec)
         detail::throw_invalid_argument();
     if(more)
     {
@@ -1137,7 +1137,7 @@ edit_segments(
         {
             ++nseg;
             more = it0.measure(n, ec);
-            if(ec.failed())
+            if(ec)
                 detail::throw_invalid_argument();
             if(! more)
                 break;
@@ -1548,7 +1548,7 @@ edit_params(
     std::size_t n = 0;
     std::size_t nparam = 0;
     bool more = it0.measure(n, ec);
-    if(ec.failed())
+    if(ec)
         detail::throw_invalid_argument();
     bool prefix;
     if(more)
@@ -1559,7 +1559,7 @@ edit_params(
         {
             ++nparam;
             more = it0.measure(n, ec);
-            if(ec.failed())
+            if(ec)
                 detail::throw_invalid_argument();
             if(! more)
                 break;

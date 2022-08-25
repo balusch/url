@@ -186,7 +186,7 @@ public:
         else
             measure_impl(v.key,
                 nullptr, n, ec);
-        return ! ec.failed();
+        return ! ec;
     }
 
     void

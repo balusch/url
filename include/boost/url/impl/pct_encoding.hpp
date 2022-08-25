@@ -131,7 +131,7 @@ pct_decode(
     auto const n =
         validate_pct_encoding(
             s, ec, allowed, opt);
-    if(ec.failed())
+    if(ec)
         return 0;
     auto const n1 =
         pct_decode_unchecked(

@@ -77,7 +77,7 @@ measure(
     string_view s(p_, n_);
     urls::validate_pct_encoding(
         s, ec, pchars, {});
-    if(ec.failed())
+    if(ec)
         return false;
     n += s.size();
     increment();
@@ -268,7 +268,7 @@ measure_impl(
 {
     urls::validate_pct_encoding(
         s, ec, pchars, {});
-    if(ec.failed())
+    if(ec)
         return false;
     n += s.size();
     return true;

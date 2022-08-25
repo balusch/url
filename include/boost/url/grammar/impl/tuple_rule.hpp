@@ -145,7 +145,7 @@ struct parse_sequence
         result<typename sequence_rule_t<
             R0, Rn...>::value_type>
     {
-        if(ec.failed())
+        if(ec)
             return ec;
         return mp11::tuple_transform(
             deref{}, vn);
