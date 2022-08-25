@@ -68,6 +68,34 @@ using string_view = boost::string_view;
 
 using string_view = std::string_view;
 
+// starts_with
+
+constexpr bool starts_with(string_view s1, string_view s2) noexcept {
+    return s1.size() >= s2.size() && std::char_traits<char>::compare( s1.data(), s2.data(), s2.size() ) == 0;
+}
+
+constexpr bool starts_with(string_view s, char x) noexcept {
+    return !s.empty() && s.front() == x;
+}
+
+constexpr bool starts_with(string_view s1, char const* s2) noexcept {
+    return starts_with(s1, string_view(s2));
+}
+
+// ends_with
+
+constexpr bool ends_with(string_view s1, string_view s2) noexcept {
+    return s1.size() >= s2.size() && std::char_traits<char>::compare(s1.data() + s1.size() - s2.size(), s2.data(), s2.size() ) == 0;
+}
+
+constexpr bool ends_with(string_view s, char x) noexcept {
+    return !s.empty() && s.back() == x;
+}
+
+constexpr bool ends_with(string_view s1, char const* s2) noexcept {
+    return ends_with(s1, string_view(s2));
+}
+
 #endif
 
 namespace detail {
