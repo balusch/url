@@ -11,11 +11,20 @@
 #define BOOST_URL_DETAIL_EXCEPT_HPP
 
 #include <boost/url/error.hpp>
+#ifndef BOOST_URL_STANDALONE
 #include <boost/assert/source_location.hpp>
+#endif
 
 namespace boost {
 namespace urls {
 namespace detail {
+
+#ifndef BOOST_URL_STANDALONE
+using source_location = boost::source_location;
+#else
+# define BOOST_CURRENT_LOCATION {}
+struct source_location{};
+#endif
 
 BOOST_URL_DECL void BOOST_NORETURN throw_bad_alloc(
     source_location const& loc = BOOST_CURRENT_LOCATION);

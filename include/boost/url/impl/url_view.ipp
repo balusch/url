@@ -19,7 +19,6 @@
 #include <boost/url/rfc/uri_reference_rule.hpp>
 #include <boost/url/rfc/origin_form_rule.hpp>
 #include <boost/url/grammar/parse.hpp>
-#include <boost/assert/source_location.hpp>
 
 namespace boost {
 namespace urls {

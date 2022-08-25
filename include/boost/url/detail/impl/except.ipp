@@ -11,13 +11,46 @@
 #define BOOST_URL_DETAIL_IMPL_EXCEPT_IPP
 
 #include <boost/url/detail/except.hpp>
-#include <boost/throw_exception.hpp>
+#ifndef BOOST_URL_STANDALONE
+# include <boost/throw_exception.hpp>
+#elif defined(BOOST_URL_STANDALONE) && defined(BOOST_NO_EXCEPTIONS)
+# include <exception>
+#endif
 #include <new>
 #include <stdexcept>
+
+#if defined(BOOST_URL_STANDALONE)
+namespace boost {
+
+#if defined(BOOST_NO_EXCEPTIONS)
+// When exceptions are disabled
+// in standalone, you must provide
+// this function.
+BOOST_NORETURN
+void
+throw_exception(std::exception const&);
+#endif
+
+} // boost
+#endif
 
 namespace boost {
 namespace urls {
 namespace detail {
+
+#if defined(BOOST_URL_STANDALONE) && \
+    ! defined(BOOST_NO_EXCEPTIONS)
+// this is in the json namespace to avoid
+// colliding with boost::throw_exception
+template<class E>
+void
+BOOST_NORETURN
+throw_exception(E e, source_location loc)
+{
+    (void) loc;
+    throw e;
+}
+#endif
 
 void
 throw_bad_alloc(
