@@ -12,10 +12,12 @@
 
 #include <boost/url/detail/config.hpp>
 #include <boost/url/error_code.hpp>
+
 #ifndef BOOST_URL_STANDALONE
 # include <boost/system/result.hpp>
 #else
 # include <variant>
+# include <system_error>
 # include <boost/url/mp11.hpp>
 # include <boost/url/detail/except.hpp>
 #endif
@@ -99,11 +101,43 @@ constexpr in_place_error_t in_place_error{};
 
 namespace internal {
 
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( error_code const & e, boost::source_location const& loc )
+{
+    throw ( std::system_error(e) );
+}
+
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( errc::errc_t const & e, boost::source_location const& loc )
+{
+    throw ( std::system_error( std::make_error_code( e ) ) );
+}
+
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::error_code const & e, boost::source_location const& loc )
+{
+    throw ( std::system_error( e ) );
+}
+
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::errc const & e, boost::source_location const& loc )
+{
+    throw ( std::system_error( std::make_error_code( e ) ) );
+}
+
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::exception_ptr const & p, boost::source_location const& loc )
+{
+    if( p )
+    {
+        std::rethrow_exception( p );
+    }
+    else
+    {
+        throw ( std::bad_exception() );
+    }
+}
+
 template<class T>
 using remove_cvref = typename std::remove_cv_t<typename std::remove_reference_t<T>>;
 
 template<class... T>
-using is_errc_t = std::is_same<mp_list<remove_cvref<T>...>, mp_list<errc::errc_t>>;
+using is_errc_t = std::is_same<mp_list<remove_cvref<T>...>, mp_list<std::errc>>;
 
 
 template<class T, class E = error_code> class result
