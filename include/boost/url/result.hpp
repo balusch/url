@@ -101,27 +101,27 @@ constexpr in_place_error_t in_place_error{};
 
 namespace internal {
 
-BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( error_code const & e, boost::source_location const& loc )
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( error_code const & e, detail::source_location const& loc )
 {
     throw ( std::system_error(e) );
 }
 
-BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( errc::errc_t const & e, boost::source_location const& loc )
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( errc::errc_t const & e, detail::source_location const& loc )
 {
     throw ( std::system_error( std::make_error_code( e ) ) );
 }
 
-BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::error_code const & e, boost::source_location const& loc )
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::error_code const & e, detail::source_location const& loc )
 {
     throw ( std::system_error( e ) );
 }
 
-BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::errc const & e, boost::source_location const& loc )
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::errc const & e, detail::source_location const& loc )
 {
     throw ( std::system_error( std::make_error_code( e ) ) );
 }
 
-BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::exception_ptr const & p, boost::source_location const& loc )
+BOOST_NORETURN BOOST_NOINLINE inline void throw_exception_from_error( std::exception_ptr const & p, detail::source_location const& loc )
 {
     if( p )
     {
@@ -282,7 +282,7 @@ public:
     }
 
     // checked value access
-    constexpr T& value( boost::source_location const& loc = BOOST_CURRENT_LOCATION ) &
+    constexpr T& value( detail::source_location const& loc = BOOST_CURRENT_LOCATION ) &
     {
         if( has_value() )
         {
@@ -294,7 +294,7 @@ public:
         }
     }
 
-    constexpr T const& value( boost::source_location const& loc = BOOST_CURRENT_LOCATION ) const&
+    constexpr T const& value( detail::source_location const& loc = BOOST_CURRENT_LOCATION ) const&
     {
         if( has_value() )
         {
@@ -309,7 +309,7 @@ public:
     template<class U = T>
     constexpr
     typename std::enable_if<std::is_move_constructible<U>::value, T>::type
-    value( boost::source_location const& loc = BOOST_CURRENT_LOCATION ) &&
+    value( detail::source_location const& loc = BOOST_CURRENT_LOCATION ) &&
     {
         return std::move( value( loc ) );
     }
@@ -317,7 +317,7 @@ public:
     template<class U = T>
     constexpr
     typename std::enable_if<!std::is_move_constructible<U>::value, T&&>::type
-    value( boost::source_location const& loc = BOOST_CURRENT_LOCATION ) &&
+    value( detail::source_location const& loc = BOOST_CURRENT_LOCATION ) &&
     {
         return std::move( value( loc ) );
     }
@@ -330,7 +330,7 @@ public:
     template<class U = T>
     constexpr
     typename std::enable_if<!std::is_move_constructible<U>::value, T const&&>::type
-    value( boost::source_location const& loc = BOOST_CURRENT_LOCATION ) const &&
+    value( detail::source_location const& loc = BOOST_CURRENT_LOCATION ) const &&
     {
         return std::move( value( loc ) );
     }
@@ -530,7 +530,7 @@ public:
 
     // checked value access
 
-    constexpr void value( boost::source_location const& loc = BOOST_CURRENT_LOCATION ) const
+    constexpr void value( detail::source_location const& loc = BOOST_CURRENT_LOCATION ) const
     {
         if( has_value() )
         {
