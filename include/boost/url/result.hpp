@@ -15,6 +15,7 @@
 #ifndef BOOST_URL_STANDALONE
 # include <boost/system/result.hpp>
 #else
+# include <variant>
 # include <boost/url/mp11.hpp>
 # include <boost/url/detail/except.hpp>
 #endif
@@ -251,11 +252,11 @@ public:
     {
         if( has_value() )
         {
-            return variant2::unsafe_get<0>( v_ );
+            return std::get<0>( v_ );
         }
         else
         {
-            throw_exception_from_error( variant2::unsafe_get<1>( v_ ), loc );
+            throw_exception_from_error( std::get<1>( v_ ), loc );
         }
     }
 
@@ -263,11 +264,11 @@ public:
     {
         if( has_value() )
         {
-            return variant2::unsafe_get<0>( v_ );
+            return std::get<0>( v_ );
         }
         else
         {
-            throw_exception_from_error( variant2::unsafe_get<1>( v_ ), loc );
+            throw_exception_from_error( std::get<1>( v_ ), loc );
         }
     }
 
@@ -304,12 +305,12 @@ public:
 
     constexpr T* operator->() noexcept
     {
-        return variant2::get_if<0>( &v_ );
+        return std::get_if<0>( &v_ );
     }
 
     constexpr T const* operator->() const noexcept
     {
-        return variant2::get_if<0>( &v_ );
+        return std::get_if<0>( &v_ );
     }
 
     constexpr T& operator*() & noexcept
@@ -364,7 +365,7 @@ public:
     constexpr E error() const
     noexcept( std::is_nothrow_default_constructible<E>::value && std::is_nothrow_copy_constructible<E>::value )
     {
-        return has_error()? variant2::unsafe_get<1>( v_ ): E();
+        return has_error()? std::get<1>( v_ ): E();
     }
 
     // swap
@@ -502,7 +503,7 @@ public:
         }
         else
         {
-            throw_exception_from_error( variant2::unsafe_get<1>( v_ ), loc );
+            throw_exception_from_error( std::get<1>( v_ ), loc );
         }
     }
 
@@ -510,12 +511,12 @@ public:
 
     constexpr void* operator->() noexcept
     {
-        return variant2::get_if<0>( &v_ );
+        return std::get_if<0>( &v_ );
     }
 
     constexpr void const* operator->() const noexcept
     {
-        return variant2::get_if<0>( &v_ );
+        return std::get_if<0>( &v_ );
     }
 
     constexpr void operator*() const noexcept
@@ -528,7 +529,7 @@ public:
     constexpr E error() const
     noexcept( std::is_nothrow_default_constructible<E>::value && std::is_nothrow_copy_constructible<E>::value )
     {
-        return has_error()? variant2::unsafe_get<1>( v_ ): E();
+        return has_error()? std::get<1>( v_ ): E();
     }
 
     // swap
