@@ -14,11 +14,15 @@
 #include <boost/url/detail/config.hpp>
 #include <boost/url/error_code.hpp>
 #include <boost/url/detail/empty_value.hpp>
-#include <boost/mp11/algorithm.hpp>
-#include <boost/mp11/function.hpp>
-#include <boost/mp11/integer_sequence.hpp>
-#include <boost/type_traits/remove_cv.hpp>
-#include <boost/type_traits/copy_cv.hpp>
+#ifndef BOOST_URL_STANDALONE
+# include <boost/mp11/algorithm.hpp>
+# include <boost/mp11/function.hpp>
+# include <boost/mp11/integer_sequence.hpp>
+# include <boost/type_traits/remove_cv.hpp>
+# include <boost/type_traits/copy_cv.hpp>
+#else
+# include <boost/url/mp11.hpp>
+#endif
 #include <cstdlib>
 #include <utility>
 
@@ -114,7 +118,7 @@ struct tuple_impl;
 
 template<class... Ts, std::size_t... Is>
 struct tuple_impl<
-    mp11::index_sequence<Is...>, Ts...>
+    index_sequence<Is...>, Ts...>
   : tuple_element_impl<Is, Ts>...
 {
     template<class... Us>
@@ -130,11 +134,11 @@ struct tuple_impl<
 template<class... Ts>
 struct tuple
     : tuple_impl<
-        mp11::index_sequence_for<Ts...>, Ts...>
+        index_sequence_for<Ts...>, Ts...>
 {
     template<class... Us,
         typename std::enable_if<
-            mp11::mp_bool<
+            mp_bool<
                 mp11::mp_all<std::is_constructible<
                     Ts, Us>...>::value &&
                 ! mp11::mp_all<std::is_convertible<
@@ -144,7 +148,7 @@ struct tuple
     constexpr
     explicit
     tuple(Us&&... us) noexcept
-      : tuple_impl<mp11::index_sequence_for<
+      : tuple_impl<index_sequence_for<
             Ts...>, Ts...>{std::forward<Us>(us)...}
     {
     }
@@ -157,7 +161,7 @@ struct tuple
     >
     constexpr
     tuple(Us&&... us) noexcept
-      : tuple_impl<mp11::index_sequence_for<
+      : tuple_impl<index_sequence_for<
             Ts...>, Ts...>{std::forward<Us>(us)...}
     {
     }
