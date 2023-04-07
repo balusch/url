@@ -112,7 +112,7 @@ class lut_chars
     static
     lut_chars
     construct(
-        Pred pred,
+        Pred const& pred,
         unsigned char ch) noexcept
     {
         return ch == 255
